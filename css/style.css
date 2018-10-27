@@ -20,6 +20,12 @@ p{
 	display: inline-block;
 }
 
+@media (max-width: 768px){
+	p{
+		font-size: 16px;
+	}
+}
+
 html,body{
 	font-family: '微軟正黑體', 'arial';
 	/*width: 100%;*/
@@ -28,6 +34,12 @@ html,body{
 h1, h2, h3{
 	padding: 0;
 	margin: 0;
+}
+
+@media (max-width: 768px){
+	h1{
+		font-size: 30px;
+	}
 }
 
 ul, li{
@@ -75,6 +87,13 @@ image{
 	margin-right: -16px;
 }
 
+@media (max-width: 1024px){
+	.row{
+		margin-left: 0;
+		margin-right: 0;
+	}
+}
+
 .row:after{
 	content: "";
 	display: block;
@@ -92,9 +111,6 @@ image{
 	display: inline-block;
 	width: 50%;
 }
-
-
-
 
 .col-1-3{
 	display: inline-block;
@@ -131,19 +147,13 @@ image{
 }
 
 @media (max-width: 1300px){
-	.col-md-1-1{
+	.col-lg-1-1{
 		width: 100%;
 	}
 
-	.col-md-1-2{
+	.col-lg-1-2{
 		width: 50%;
-	}
-}
-
-@media (max-width: 979px){
-	.col-md-1-2{
-	display: inline-block;
-	width: 50%;
+		margin-bottom: 8px;
 	}
 }
 
@@ -151,6 +161,10 @@ image{
 	.col-sm-1-1{
 		width: 100%;
 	}
+}
+
+.col-margin{
+	margin: 4px 0;
 }
 
 /*---Component---*/
@@ -175,12 +189,6 @@ image{
 	padding: 0 16px;
 }
 
-@media (max-width: 1480px){
-	.navbar .container{
-		margin-left: 48px;
-		margin-right: 48px;
-	}
-}
 
 .navbar .logo-container{
 	vertical-align: top;
@@ -188,6 +196,12 @@ image{
 	width: 180px;
 	height: 60px;
 	margin: 2px 0;
+}
+
+@media (max-width: 768px){
+	.navbar .logo-container{
+		width: 120px;
+	}
 }
 
 .navbar .category{
@@ -208,7 +222,6 @@ image{
 	transition: all 0.3s;
 }
 
-/*問題：分類選單剛跳出來時，滑鼠移開再移回選單位置，會有一小段時間選單直接出現*/
 .menu-container:hover .category{
 	visibility: visible;
 	opacity: 1;
@@ -227,6 +240,7 @@ image{
 .search-bar .menu-container{
 	display: inline-block;
 	margin: 0 26px;
+	height: 100%;
 }
 
 .navbar .category-link{
@@ -244,7 +258,7 @@ image{
 	vertical-align: top;
 	height: 100%;
 	width: 100%;
-	background-image: url(../image/common/logo_橫.png);
+	background-image: url(../image/common/logo.png);
 	background-size: contain;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -260,16 +274,14 @@ image{
 
 .search-bar .menu-img{
 	vertical-align: top;
-	
 	padding-left: 40px;
-
 	float: left;
 }
 
 .menu-img:after{
 	content: '';
-	width: 20px;
-	height: 20px;
+	width: 18px;
+	height: 18px;
 	background-image: url(../image/icon/menu.png);
 	background-size: contain;
 	background-position: center;
@@ -299,11 +311,19 @@ image{
 	padding-bottom: 16px;
 }
 
+@media (max-width: 1300px){
+	.search{
+		width: 0;
+
+	}
+}
+
 /*問題：設定max-width會消失*/
 .search-form{
-	display: block;
+	display: inline-block;
 	width: 100%;
-	height: 100%;
+	height: 33px;
+	border: none;
 	/*width: 100%;*/
 	border-radius: 4px;
 	/*margin: 17px 0;*/
@@ -318,8 +338,8 @@ image{
 }
 
 .search-form-sm{
-	height: 24px;
-	width: 24px;	
+	height: 20px;
+	width: 20px;	
 
 	position: absolute;
 	left: 0;
@@ -347,16 +367,22 @@ image{
 }
 
 .navbar .menu{
-	position: absolute;
-	top: 50%;
-	right: 0;
-	transform: translate(0,-50%);
+	display: inline-block;
+	float: right;
 }
+
+
 
 .navbar .menu-item{
 	float: left;
-	padding: 8px 12px;
-	line-height: 48px;
+	padding: 0 12px;
+
+}
+
+.menu-item:after{
+	content: "";
+	display: block;
+	clear: both;
 }
 
 .menu-link{
@@ -374,7 +400,7 @@ image{
 .navbar .sign-up:after{
 	content: "";
 	width: 1px;
-	height: 50%;
+	height: 40%;
 	background-color: #ccc;
 
 	position: absolute;
@@ -383,20 +409,141 @@ image{
 	transform: translate(0, -50%);
 }
 
+@media (max-width: 1024px){
+	.navbar .menu{
+		visibility: none;
+		opacity: 0;
+		transition: all 0.3s;
+
+		display: flex;
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: #fff;
+		flex-direction: column;
+		justify-content: center;
+		font-size: 20px;
+		/*z-index: 500;*/
+	}
+
+	.js-dropdown-content.active{
+		visibility: visible;
+		opacity: 1;
+	}
+
+
+	.menu-item{
+		display: block;
+/*		width: 100%;
+		height: 16.666666%;*/
+	}
+	
+	.menu-link{
+		display: block;
+		text-align: center;
+	}
+	.navbar .close-btn{
+		display: block;
+		width: 48px;
+		height: 48px;
+		padding: 8px;
+		position: absolute;
+		top: 24px;
+		right: 56px;
+	}
+
+}
+
+.js-dropdown-btn.active span:nth-child(1){
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%) rotate(45deg);
+}
+.js-dropdown-btn.active span:nth-child(3){
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%) rotate(-45deg);
+}
+.js-dropdown-btn.active span:nth-child(2){
+	opacity: 0;
+}
+@media (max-width: 768px){
+	.menu-toggle{
+		display: block;
+	}
+}
+
 .navbar .sign-up{
 	margin-left: 8px;
 	padding-left: 16px;
+}
+
+@media (max-width: 1024px){
+	.navbar .sign-up{
+		margin: 0;
+	}
+}
+
+.menu-toggle{
+	visibility: none;
+	opacity: 0;
+
+	width: 32px;
+	height: 32px;
+
+	position: absolute;
+	top: -2px;
+	right: 16px;
+
+	margin: 10px;
+	padding-top: 0px;
+}
+
+@media (max-width: 1024px){
+	.menu-toggle{
+		visibility: visible;
+		opacity: 1;
+	}
+}
+.menu-toggle span{
+	width: 30px;
+	height: 2px;
+	display: block;
+	background-color: #42a4f4;
+	margin-bottom: 8px;
+	transition: all 0.3s;
+}
+.menu-toggle span:nth-child(1){
+	position: absolute;
+	top: 12px;
+	left: 8px;
+}
+.menu-toggle span:nth-child(2){
+	position: absolute;
+	top: 22px;
+	left: 8px;
+}
+.menu-toggle span:nth-child(3){
+	position: absolute;
+	top: 32px;
+	left: 8px;
 }
 
 .agenda{
 	position: fixed;
 	top: 200px;
 	left: 0px;
+
+	z-index: 500;
 }
 
 .agenda-link{
 	display: inline-block;
-	width: 48px;
+	width: 40px;
 	height: 120px;
 	padding: 12px;
 	background-color: #42a4f4;
@@ -404,7 +551,7 @@ image{
 	box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 	vertical-align: middle;
 	writing-mode: vertical-lr;
-	line-height: 24px;
+	line-height: 16px;
 	color: #fff;
 	text-align: center;
 	letter-spacing: 4px;
@@ -414,13 +561,6 @@ image{
 
 .agenda-link:hover{
 	background-color: #078CF8;
-}
-
-.agenda-link:hover .dashboard{
-	visibility: visible;
-	opacity: 1;
-
-	z-index: 100;
 }
 
 .main-container{
@@ -438,27 +578,47 @@ image{
 	}
 }
 
+@media (max-width: 1024px){
+	.main-container{
+		margin-left: 16px;
+		margin-right: 16px;
+	}
+}
+
 .row.first{
 	padding-top: 80px;
 }
 
 .dashboard{
-	visibility: hidden;
-	opacity: 0;
-
+	/*vertical-align: top;*/
 	width: 480px;
 	height: 480px;
+	/*padding-top: 126.76279%*/;
 	display: inline-block;
 
 	position: fixed;
 	top: 64px;
 	left: 0;
 
-	transition: all 0.2s;
+	visibility: hidden;
+	opacity: 0;
+
+	transition: all 0.3s;
 }
 
+@media (max-width: 1024px){
+	.dashboard.active{
+		visibility: visible;
+		opacity: 1;
+	}
+}
 
-
+@media (min-width: 1025px){
+	.agenda:hover .dashboard{
+		visibility: visible;
+		opacity: 1;
+	}
+}
 
 .dashboard-container{
 	position: absolute;
@@ -467,13 +627,25 @@ image{
 	background-color: #fff;
 	width: 100%;
 	height: 100%;
-	padding: 32px 32px;
+	padding: 48px 32px;
 	box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 	/*border-radius: 4px;*/
 	/*margin-right: 8px;*/
 }
 
+@media (max-width: 768px){
+	.dashboard{
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 90%;
+	}
 
+	.dashboard-container{
+		padding: 64px 32px;
+	}
+}
 
 .dashboard-reminder{
 	vertical-align: top;
@@ -608,17 +780,59 @@ image{
 	transition: all 0.2s;
 }
 
-
-
 .dashboard .item-link:hover .item-subject{
 	color: #42a4f4;
+}
+
+.js-dashboard-btn{
+	position: absolute;
+	right: 0;
+	top: 0;
+
+	width: 30px;
+	height: 30px;
+
+	margin-top: 20px;
+	margin-right: 20px;
+
+	visibility: hidden;
+	opacity: 0;
+
+	transition: all 0.2s;
+}
+
+.js-dashboard-btn.active{
+	visibility: visible;
+	opacity: 1;
+}
+
+.js-dashboard-btn span{
+	background-color: #42a4f4;
+	height: 2px;
+	width: 30px;
+	margin-bottom: 8px;
+	display: block;
+}
+
+.js-dashboard-btn span:nth-child(1){
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%) rotate(45deg);
+
+}
+.js-dashboard-btn span:nth-child(2){
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%) rotate(-45deg);
 }
 
 .ad-banner{
 	vertical-align: top;
 	display: inline-block;
 	width: 100%;
-	padding: 0 16px;
+	/*padding: 0 16px;*/
 }
 
 
@@ -698,7 +912,7 @@ image{
 .product .leader{
 	display: block;
 	color: #ccc;
-
+	padding-top: 4px;
 	margin-bottom: 12px;
 }
 
@@ -779,14 +993,13 @@ image{
 }
 
 .member-comment .member-name{
-	width: 100%;
-	height: 64px;
-	vertical-align: middle;
+	vertical-align: top;
 	display: block;
-	padding-top: 16px;
 
-	font-size: 20px;
-	line-height: 20px;
+	height: 48px;
+	font-size: 24px;
+	line-height: 48px;
+
 }
 
 
@@ -805,20 +1018,6 @@ image{
 	background-size: contain;
 	background-position: center;
 	background-repeat: no-repeat;
-}
-
-@media (max-width: 1037px){
-	.star-container .star{
-		width: 12px;
-		height: 12px;
-	}
-}
-
-@media (max-width: 768px){
-	.star-container .star{
-		width: 16px;
-		height: 16px;
-	}
 }
 
 .comment-content{
@@ -885,6 +1084,16 @@ image{
 	padding-bottom: 16px;
 }
 
+@media (max-width: 768px){
+	.promotion-title{
+		font-size: 30px;
+	}
+
+	.promotion-content{
+		font-size: 16px;
+	}
+}
+
 .promotion .sign-up-btn{
 	text-align: center;
 }
@@ -910,6 +1119,8 @@ image{
 
 .cooperate-item{
 	text-align: center;
+	padding-bottom: 32px;
+
 }
 
 .cooperate-item:nth-child(1){
@@ -923,7 +1134,11 @@ image{
 
 .cooperate-description{
 	display: block;
+
+	height: 64px;
 	padding-bottom: 32px;
+	margin-left: 8px;
+	margin-right: 8px;
 	line-height: 24px;
 }
 
@@ -939,14 +1154,26 @@ image{
 	background-color: #078CF8;
 }
 
+@media (max-width: 768px){
+	.botton-line{
+		height: 1px;
+		width:80%;
+		background-color: #42a4f4;
+		position: absolute;
+		left: 50%;
+		bottom: 0;
+		transform: translate(-50%,0);
+		margin-top: 16px;
+	}	
+}
+
+
 .footer{
 	background-color: #ededed;
-	/*height: 300px;*/
 }
 
 .footer .about{
 	display: block;
-	height: 150px;
 }
 
 .footer .title{
@@ -954,10 +1181,24 @@ image{
 	color: #42a4f4;
 }
 
+/*@media (max-width: 768px){
+	.footer-item{
+		display: flex;
+		justify-content: center;
+	}
+}
+*/
 .footer .link{
 	display: block;
 	margin-left: 32px;
 	margin-bottom: 16px;
+}
+
+@media (max-width: 768px){
+	.footer .link{
+		display: inline-block;
+		margin-bottom: 
+	}
 }
 
 .footer .copy-right{
