@@ -613,11 +613,9 @@ image{
 	}
 }
 
-@media (min-width: 1025px){
-	.agenda:hover .dashboard{
-		visibility: visible;
-		opacity: 1;
-	}
+.agenda:hover .dashboard{
+	visibility: visible;
+	opacity: 1;
 }
 
 .dashboard-container{
