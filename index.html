@@ -7,8 +7,8 @@
 </head>
 <link rel="stylesheet" href="css/normalize.css">
 <link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="vendor/OwlCarousel/owl.carousel.min.css">
-<link rel="stylesheet" href="vendor/OwlCarousel/owl.theme.default.min.css">
+<link rel="stylesheet" href="vendor/OwlCarousel/assets/owl.carousel.min.css">
+<link rel="stylesheet" href="vendor/OwlCarousel/assets/owl.theme.default.min.css">
 <body>
 	<div class="wrapper">
 		<header id="header" class="header">
@@ -682,10 +682,6 @@
 <script src="vendor/jquery-3.3.1.min.js"></script>
 <script src="vendor/OwlCarousel/owl.carousel.min.js"></script>
 <script>
-	$(document).ready(function(){
-	  $(".owl-carousel").owlCarousel();
-	});
-
     $('.js-dropdown-btn').on('click', function(){
     	$(this).toggleClass('active');
         $('.js-dropdown-content').toggleClass('active');
@@ -706,26 +702,24 @@
     	$('.dashboard').removeClass('active');
     })
 
-        // Owl-carousel initialize
+   
+    // Owl-carousel initialize
     $(".owl-carousel").owlCarousel({
 		loop: true,
 		margin: 16,
 		nav: true,
 		responsive:{
-			0:{
-				items:2
-			},
-			1200:{
-				items:4
-			},
-	        640:{
-	            items:2
+	        0:{
+	            items:1
 	        },
-	        769:{
-	            items:3
+	        768:{
+	        	items:2
 	        },
-	        319:{
-	        	items:1
+	        1200:{
+	        	items:3
+	        },
+	        1300:{
+	        	items:4
 	        }
 	    }
 	});
